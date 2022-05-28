@@ -1,9 +1,9 @@
 using InterestingAlgorithms.BLL.Services;
 using InterestingAlgorithms.BLL.Services.Intarface;
+using InterestingAlgorithms.Grpc.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -55,6 +55,7 @@ namespace InterestingAlgorithms
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGrpcService<AlgorithmsGrpcService>();
                 endpoints.MapControllers();
             });
         }
