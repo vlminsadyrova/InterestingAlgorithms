@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option csharp_namespace = "AlgorithmsGrpc";
+
+package algorithms;
+
+message GetResultAdditionsRequest {
+  int32 first = 1;
+  int32 second = 2;
+}
+
+message GetResultAdditionsResponse {
+  int32 result = 1;
+}
+
+service Algorithms {
+  rpc GetResultAdditions (GetResultAdditionsRequest) returns (GetResultAdditionsResponse);
+}

@@ -1,18 +1,13 @@
+using System.Threading.Tasks;
+using AlgorithmsGrpc;
 using InterestingAlgorithms.BLL.Services;
 using InterestingAlgorithms.BLL.Services.Intarface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace InterestingAlgorithms
 {
@@ -28,7 +23,7 @@ namespace InterestingAlgorithms
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddGrpc();
             services.AddControllers();
             services.AddScoped<ICalculatorService, CalculatorService>();
             services.AddSwaggerGen(c =>
@@ -47,8 +42,6 @@ namespace InterestingAlgorithms
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "InterestingAlgorithms v1"));
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
@@ -56,6 +49,7 @@ namespace InterestingAlgorithms
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGrpcService<AlgorithmsService>();
             });
         }
     }
