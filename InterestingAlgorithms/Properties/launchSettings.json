@@ -22,9 +22,11 @@
       "dotnetRunMessages": "true",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "applicationUrl": "https://localhost:5010;http://localhost:5012",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "O3_SERVICE_PORT_HTTP": "5010",
+        "O3_SERVICE_PORT_GRPC": "5012"
       }
     }
   }
